@@ -5,10 +5,16 @@
 <section class="hero">
   <div class="hero-copy">
     <p class="eyebrow">Student Petition</p>
-    <h1>Abolish midterms. Replace pressure with better learning.</h1>
+    <h1>
+      <span>Abolish midterms.</span>
+      <span>Replace pressure with better learning.</span>
+    </h1>
     <p class="lead">
-      We are asking the university to remove midterm exams and consider fairer alternatives such as projects,
-      smaller quizzes, presentations, or continuous assessment.
+      We are asking the university to remove midterm exams and consider fairer alternatives.
+    </p>
+    <p class="lead lead-support">
+      Projects, smaller quizzes, presentations, and continuous assessment can measure learning without
+      compressing so much stress into one exam week.
     </p>
     <div class="stats-card mobile-only">
       <span class="count">{{ count }}</span>
@@ -26,7 +32,7 @@
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
       <label for="name">Your name <span>*</span></label>
-      <input id="name" name="name" type="text" maxlength="120" placeholder="" required>
+      <input id="name" name="name" type="text" maxlength="120" required>
 
       <label for="rationale">Rationale <small>optional</small></label>
       <textarea id="rationale" name="rationale" maxlength="1000" rows="5" placeholder="Why do you think midterms should be abolished or replaced?"></textarea>
@@ -45,40 +51,21 @@
   <article>
     <h2>Why this petition exists</h2>
     <p>
-      Midterms often concentrate stress into one high-pressure week. A better system can evaluate students more consistently
-      and give them room to learn from feedback instead of only preparing for one exam.
+      Midterms often concentrate stress into one high-pressure week.
+    </p>
+    <p>
+      A better system can evaluate students more consistently and give them room to learn from feedback
+      instead of only preparing for one exam.
     </p>
   </article>
   <article>
     <h2>What we are asking for</h2>
     <p>
-      Replace midterms with learning-based alternatives: smaller assessments, projects, presentations, in-class work,
-      or other formats that fit each course.
+      Replace midterms with learning-based alternatives.
+    </p>
+    <p>
+      Smaller assessments, projects, presentations, in-class work, or other formats can fit the goals of each course.
     </p>
   </article>
-</section>
-
-<section class="recent-section">
-  <div class="section-heading">
-    <h2>Recent signatures</h2>
-    <a href="{{ url_for('signature_list') }}">View all</a>
-  </div>
-
-  {% if recent %}
-    <div class="signature-list">
-      {% for row in recent %}
-        <div class="signature-item">
-          <div class="signature-name">{{ row.name }}</div>
-          {% if row.rationale %}
-            <p>{{ row.rationale }}</p>
-          {% else %}
-            <p class="muted">Signed without a rationale.</p>
-          {% endif %}
-        </div>
-      {% endfor %}
-    </div>
-  {% else %}
-    <div class="empty-state">No signatures yet. Be the first one.</div>
-  {% endif %}
 </section>
 {% endblock %}
