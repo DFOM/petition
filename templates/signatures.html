@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}All Signatures{% endblock %}
+
+{% block content %}
+<section class="list-page">
+  <div class="section-heading list-heading">
+    <div>
+      <p class="eyebrow">Petition Record</p>
+      <h1>All signatures</h1>
+      <p class="lead small">{{ total }} total student signature{{ '' if total == 1 else 's' }}.</p>
+    </div>
+    <a class="button-link" href="{{ url_for('export_csv') }}">Download CSV</a>
+  </div>
+
+  {% if rows %}
+    <div class="signature-list full-list">
+      {% for row in rows %}
+        <div class="signature-item">
+          <div class="signature-name">{{ row.name }}</div>
+          {% if row.rationale %}
+            <p>{{ row.rationale }}</p>
+          {% else %}
+            <p class="muted">Signed without a rationale.</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="pager">
+      {% if has_prev %}
+        <a href="{{ url_for('signature_list', page=page-1) }}">Previous</a>
+      {% endif %}
+      <span>Page {{ page }}</span>
+      {% if has_next %}
+        <a href="{{ url_for('signature_list', page=page+1) }}">Next</a>
+      {% endif %}
+    </div>
+  {% else %}
+    <div class="empty-state">No one has signed yet.</div>
+  {% endif %}
+</section>
+{% endblock %}
